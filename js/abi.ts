@@ -1,20 +1,18 @@
+require("dotenv").config()
 import algosdk, { decodeAddress, Transaction } from "algosdk";
 import * as fs from "fs";
 import { Buffer } from "buffer";
-import { getAccounts } from "./sandbox";
 
 const algod_token =
   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-const algod_host = "http://127.0.0.1";
-const algod_port = "4001";
+const algod_host = "https://testnet-api.algonode.cloud";
 
 (async function () {
   // Create a client to communicate with local node
-  const client = new algosdk.Algodv2(algod_token, algod_host, algod_port);
+  const client = new algosdk.Algodv2(algod_token, algod_host, '');
 
-  // Get account from sandbox
-  const accounts = await getAccounts();
-  const acct = accounts[0];
+  // Get account from mnemonic
+  const acct = algosdk.mnemonicToSecretKey(process.env['MNEMONIC'] || '');
 
   // Read in the local contract.json file
   const buff = fs.readFileSync("../contract.json");
@@ -23,6 +21,7 @@ const algod_port = "4001";
   const contract = new algosdk.ABIContract(JSON.parse(buff.toString()));
 
   const appId = parseInt(fs.readFileSync("../.app_id").toString());
+  console.log("App ID: ", appId);
 
   // We initialize the common parameters here, they'll be passed to all the transactions
   // since they happen to be the same
