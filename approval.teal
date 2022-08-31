@@ -67,21 +67,26 @@ int 0
 assert
 txna ApplicationArgs 1
 btoi
-store 79
+store 81
 txna ApplicationArgs 2
 btoi
-store 81
+store 83
 txn GroupIndex
 int 1
 -
-store 80
-load 79
-load 80
-load 81
-callsub txntest_12
 store 82
-byte 0x151f7c75
 load 82
+gtxns TypeEnum
+int pay
+==
+assert
+load 81
+load 82
+load 83
+callsub txntest_12
+store 84
+byte 0x151f7c75
+load 84
 itob
 concat
 log
@@ -114,9 +119,9 @@ txna ApplicationArgs 1
 int 0
 getbyte
 callsub minbal_10
-store 77
+store 79
 byte 0x151f7c75
-load 77
+load 79
 itob
 concat
 log
@@ -133,74 +138,72 @@ int 0
 assert
 txna ApplicationArgs 1
 btoi
-store 36
+store 38
 txna ApplicationArgs 2
 btoi
-store 37
+store 39
 txna ApplicationArgs 3
 btoi
-store 38
+store 40
 txna ApplicationArgs 4
 btoi
-store 39
+store 41
 txna ApplicationArgs 5
 btoi
-store 40
+store 42
 txna ApplicationArgs 6
 btoi
-store 41
+store 43
 txna ApplicationArgs 7
 btoi
-store 42
+store 44
 txna ApplicationArgs 8
 btoi
-store 43
+store 45
 txna ApplicationArgs 9
 btoi
-store 44
+store 46
 txna ApplicationArgs 10
 btoi
-store 45
+store 47
 txna ApplicationArgs 11
 btoi
-store 46
+store 48
 txna ApplicationArgs 12
 btoi
-store 47
+store 49
 txna ApplicationArgs 13
 btoi
-store 48
+store 50
 txna ApplicationArgs 14
 btoi
-store 49
+store 51
 txna ApplicationArgs 15
-store 56
-load 56
+store 58
+load 58
 int 0
 extract_uint64
-store 50
-load 56
+store 52
+load 58
 int 8
 extract_uint64
-store 51
-load 56
+store 53
+load 58
 int 16
 extract_uint64
-store 52
-load 56
+store 54
+load 58
 int 24
 extract_uint64
-store 53
-load 56
+store 55
+load 58
 int 32
 extract_uint64
-store 54
-load 56
+store 56
+load 58
 int 40
 extract_uint64
-store 55
-load 36
-load 37
+store 57
 load 38
 load 39
 load 40
@@ -219,10 +222,12 @@ load 52
 load 53
 load 54
 load 55
-callsub manyargs_9
-store 57
-byte 0x151f7c75
+load 56
 load 57
+callsub manyargs_9
+store 59
+byte 0x151f7c75
+load 59
 itob
 concat
 log
@@ -239,9 +244,9 @@ int 0
 assert
 txna ApplicationArgs 1
 callsub sumarray_8
-store 32
+store 34
 byte 0x151f7c75
-load 32
+load 34
 itob
 concat
 log
@@ -258,9 +263,9 @@ int 0
 assert
 txna ApplicationArgs 1
 callsub concatstrings_7
-store 27
+store 28
 byte 0x151f7c75
-load 27
+load 28
 concat
 log
 int 1
@@ -518,11 +523,11 @@ retsub
 reverse_6:
 store 23
 byte ""
-store 25
+store 26
 int 0
-store 24
+store 25
 reverse_6_l1:
-load 24
+load 25
 load 23
 int 0
 extract_uint16
@@ -530,68 +535,72 @@ extract_uint16
 bz reverse_6_l3
 load 23
 int 1
-load 24
+load 25
 *
 int 2
 +
 getbyte
-store 26
+store 27
 byte 0x00
 int 0
-load 26
+load 27
 setbyte
-load 25
+load 26
 concat
-store 25
-load 24
+store 26
+load 25
 int 1
 +
-store 24
+store 25
 b reverse_6_l1
 reverse_6_l3:
-load 25
+load 26
+store 24
+load 24
 len
 itob
 extract 6 0
-load 25
+load 24
 concat
+store 24
+load 24
 retsub
 
 // concat_strings
 concatstrings_7:
-store 28
-byte ""
-store 30
-int 0
 store 29
+byte ""
+store 32
+int 0
+store 31
 concatstrings_7_l1:
+load 31
 load 29
-load 28
 int 0
 extract_uint16
 <
 bz concatstrings_7_l6
-load 28
-load 28
-int 2
 load 29
+load 29
+int 2
+load 31
 *
 int 2
 +
 extract_uint16
 int 2
 +
-load 29
+load 31
 int 1
 +
-load 28
+load 29
 int 0
 extract_uint16
 ==
 bnz concatstrings_7_l5
-load 28
-int 2
 load 29
+int 2
+load 31
 *
 int 2
 +
@@ -602,65 +611,71 @@ int 2
 +
 concatstrings_7_l4:
 substring3
-store 31
-load 30
-load 31
+store 33
+load 32
+load 33
 extract 2 0
 concat
-store 30
-load 29
+store 32
+load 31
 int 1
 +
-store 29
+store 31
 b concatstrings_7_l1
 concatstrings_7_l5:
-load 28
+load 29
 len
 b concatstrings_7_l4
 concatstrings_7_l6:
+load 32
+store 30
 load 30
 len
 itob
 extract 6 0
 load 30
 concat
+store 30
+load 30
 retsub
 
 // sum_array
 sumarray_8:
-store 33
-int 0
 store 35
 int 0
-store 34
+store 37
+int 0
+store 36
 sumarray_8_l1:
-load 34
-load 33
+load 36
+load 35
 int 0
 extract_uint16
 <
 bz sumarray_8_l3
-load 33
+load 35
 int 8
-load 34
+load 36
 *
 int 2
 +
 extract_uint64
-load 35
+load 37
 +
-store 35
-load 34
+store 37
+load 36
 int 1
 +
-store 34
+store 36
 b sumarray_8_l1
 sumarray_8_l3:
-load 35
+load 37
 retsub
 
 // manyargs
 manyargs_9:
+store 78
+store 77
 store 76
 store 75
 store 74
@@ -678,43 +693,41 @@ store 63
 store 62
 store 61
 store 60
-store 59
-store 58
 retsub
 
 // min_bal
 minbal_10:
 acct_params_get AcctMinBalance
-store 78
+store 80
 retsub
 
 // no_return
 noreturn_11:
-store 86
+store 88
 int 1
 assert
 retsub
 
 // txntest
 txntest_12:
+store 87
+store 86
 store 85
-store 84
-store 83
-load 84
+load 86
 gtxns TypeEnum
 int pay
 ==
 assert
-load 84
+load 86
 gtxns Amount
-load 83
-==
-assert
-load 84
-gtxns Fee
 load 85
 ==
 assert
-load 84
+load 86
+gtxns Fee
+load 87
+==
+assert
+load 86
 gtxns Amount
 retsub
